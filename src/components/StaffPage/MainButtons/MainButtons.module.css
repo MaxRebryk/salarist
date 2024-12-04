@@ -1,0 +1,21 @@
+.mainButtonsDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.fullButton {
+  border: 1px solid white;
+  background-color: green;
+  color: white;
+  height: 50px;
+}
+
+.halfButton {
+  border: 1px solid white;
+  background-color: orange;
+  color: white;
+  height: 50px;
+}
