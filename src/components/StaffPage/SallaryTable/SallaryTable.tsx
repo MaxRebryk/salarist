@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import css from "../SallaryTable/SallaryTable.module.css";
 
-const SallaryTable: React.FC = () => {
+type SallaryTableProps = {
+  sallaryInfo: number;
+};
+
+const SallaryTable: React.FC<SallaryTableProps> = ({ sallaryInfo }) => {
   const [date, setDate] = useState(
     new Date().toLocaleDateString("uk-UA", {
       weekday: "long",
@@ -26,7 +30,7 @@ const SallaryTable: React.FC = () => {
       <div className={css.sallaryDiv}>
         <h1>Дата: {date}</h1>
         <h2>Поточна Заробітна Плата:</h2>
-        <h2>0</h2>
+        <h2>{sallaryInfo} грн</h2>
       </div>
     </>
   );

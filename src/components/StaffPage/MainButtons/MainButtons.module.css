@@ -11,6 +11,7 @@
   background-color: green;
   color: white;
   height: 50px;
+  cursor: pointer;
 }
 
 .halfButton {
@@ -18,4 +19,5 @@
   background-color: orange;
   color: white;
   height: 50px;
+  cursor: pointer;
 }

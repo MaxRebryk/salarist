@@ -1,10 +1,20 @@
 import css from "../MainButtons/MainButtons.module.css";
-const MainButtons: React.FC = () => {
+
+type MainButtonsProps = {
+  fullClick: () => void;
+  halfClick: () => void;
+};
+
+const MainButtons: React.FC<MainButtonsProps> = ({ fullClick, halfClick }) => {
   return (
     <>
       <div className={css.mainButtonsDiv}>
-        <button className={css.fullButton}>Повна Зміна</button>
-        <button className={css.halfButton}>Підстраховка</button>
+        <button onClick={fullClick} className={css.fullButton}>
+          Повна Зміна
+        </button>
+        <button onClick={halfClick} className={css.halfButton}>
+          Підстраховка
+        </button>
       </div>
     </>
   );
