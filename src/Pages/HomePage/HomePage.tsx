@@ -1,8 +1,13 @@
+import css from "./HomePage.module.css";
+
 const HomePage: React.FC = () => {
   return (
-    <>
-      <h1>Home Page</h1>
-    </>
+    <section className={css.mainSection}>
+      <h1 className={css.mainHeader}>
+        Loui <br />
+        Sallarist
+      </h1>
+    </section>
   );
 };
 

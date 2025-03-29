@@ -1,0 +1,13 @@
+.mainSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 280px;
+  height: 700px;
+
+  background-color: black;
+}
+.mainHeader {
+  font-size: 35px;
+}
