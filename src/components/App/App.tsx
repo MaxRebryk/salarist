@@ -1,13 +1,14 @@
 import { lazy, useState } from "react";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import AdminPage from "../../Pages/AdminPage/AdminPage";
-const HomePage = lazy(() => import("../../Pages/HomePage/HomePage"));
-const LoginPage = lazy(() => import("../../Pages/LoginPage/LoginPage"));
+import AdminPage from "../../pages/AdminPage/AdminPage";
+
+const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
+const LoginPage = lazy(() => import("../../pages/LoginPage/LoginPage"));
 const NotFoundPage = lazy(
-  () => import("../../Pages/NotFoundPage/NotFoundPage")
+  () => import("../../pages/NotFoundPage/NotFoundPage")
 );
-const StaffPage = lazy(() => import("../../Pages/StaffPage/StaffPage"));
+const StaffPage = lazy(() => import("../../pages/StaffPage/StaffPage"));
 const App: React.FC = () => {
   return (
     <>
