@@ -1,0 +1,28 @@
+.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 20px;
+  height: 40px;
+  padding: 10px;
+  border: aliceblue solid 1px;
+}
+
+.ul {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 30px;
+}
+
+.navhref {
+  text-decoration: none;
+  color: aliceblue;
+  cursor: pointer;
+}

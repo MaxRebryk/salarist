@@ -2,6 +2,7 @@ import axios from "axios";
 
 export const setBaseUrl = (): void => {
   axios.defaults.baseURL = "https://sallaristbackend.onrender.com/";
+  axios.defaults.withCredentials = true;
 };
 
 export const setAuthToken = (token: string): void => {

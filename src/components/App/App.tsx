@@ -1,5 +1,5 @@
-import { lazy, Suspense, useEffect, useState } from "react";
-import "./App.css";
+import { lazy, Suspense, useEffect } from "react";
+import css from "./App.module.css";
 import { Route, Routes } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -7,6 +7,8 @@ import { refreshUser } from "../../redux/auth/operations";
 import { selectIsRefreshing } from "../../redux/auth/selectors";
 import PrivateRoute from "../PrivateRoute";
 import RestrictedRoute from "../RestrictedRoute";
+import { InfinitySpin } from "react-loader-spinner";
+import Layout from "../Layout/Layout";
 
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
 const LoginPage = lazy(() => import("../../pages/LoginPage/LoginPage"));
@@ -26,34 +28,45 @@ const App: React.FC = () => {
   }, [dispatch]);
 
   if (isRefreshing) {
-    return <div>IsLoadding..</div>;
+    return (
+      <div className={css.loader}>
+        <InfinitySpin
+          visible={true}
+          width="200"
+          color="#0000CD"
+          ariaLabel="infinity-spin-loading"
+        />
+      </div>
+    );
   } else {
     return (
       <>
-        <Suspense fallback={<div>Loading...</div>}>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route
-              path="/staff"
-              element={
-                <PrivateRoute redirectTo="/login" component={StaffPage} />
-              }
-            />
-            <Route
-              path="/login"
-              element={
-                <RestrictedRoute redirectTo="/staff" component={LoginPage} />
-              }
-            />
-            <Route
-              path="/admin"
-              element={
-                <PrivateRoute redirectTo="/login" component={AdminPage} />
-              }
-            />
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </Suspense>
+        <Layout>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route
+                path="/staff"
+                element={
+                  <PrivateRoute redirectTo="/login" component={StaffPage} />
+                }
+              />
+              <Route
+                path="/admin"
+                element={
+                  <PrivateRoute redirectTo="/login" component={AdminPage} />
+                }
+              />
+              <Route path="*" element={<NotFoundPage />} />
+              <Route
+                path="/login"
+                element={
+                  <RestrictedRoute redirectTo="/staff" component={LoginPage} />
+                }
+              />
+            </Routes>
+          </Suspense>
+        </Layout>
       </>
     );
   }

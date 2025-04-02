@@ -19,7 +19,9 @@ export const register = createAsyncThunk(
         "/auth/register",
         newUser
       );
-      setAuthToken(response.data.token);
+      const accessToken = response.data.data.accessToken;
+
+      setAuthToken(accessToken);
       return response.data;
     } catch (error: any) {
       return thunkApi.rejectWithValue(error.message);
@@ -58,23 +60,14 @@ export const logout = createAsyncThunk("auth/logout", async (_, thunkApi) => {
     return thunkApi.rejectWithValue(error.message);
   }
 });
-
 export const refreshUser = createAsyncThunk(
   "auth/refresh",
   async (_, thunkApi) => {
     try {
-      const reduxState = thunkApi.getState() as RootState;
-      setAuthToken(reduxState.auth.token);
-      const response = await axios.get("/auth/refresh");
-      return response.data;
+      const response = await axios.post("/auth/refresh");
+      return response.data.data;
     } catch (error: any) {
       return thunkApi.rejectWithValue(error.message);
     }
-  },
-  {
-    condition(_, thunkApi) {
-      const reduxState = thunkApi.getState() as RootState;
-      return reduxState.auth.token != null;
-    },
   }
 );

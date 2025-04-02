@@ -12,12 +12,10 @@ const StaffPage: React.FC = () => {
     setSallaryInfo(sallaryInfo + 400);
   };
   return (
-    <>
-      <div className={css.mainDiv}>
-        <SallaryTable sallaryInfo={sallaryInfo} />
-        <MainButtons fullClick={fullClick} halfClick={halfClick} />
-      </div>
-    </>
+    <div className={css.mainDiv}>
+      <SallaryTable sallaryInfo={sallaryInfo} />
+      <MainButtons fullClick={fullClick} halfClick={halfClick} />
+    </div>
   );
 };
 
