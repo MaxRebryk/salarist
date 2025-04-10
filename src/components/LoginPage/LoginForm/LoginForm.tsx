@@ -27,12 +27,17 @@ export default function LoginForm() {
 
   return (
     <Formik initialValues={initialValues} onSubmit={handleSubmit} class>
-      <Form className={css.form}>
+      <Form autoComplete="on" className={css.form}>
         <label htmlFor={loginId}>Email</label>
-        <Field type="mail" name="email" id={loginId} />
+        <Field autoComplete="email" type="email" name="email" id={loginId} />
         <label htmlFor={passwordId}>Password</label>
-        <Field type="password" name="password" id={passwordId} />
-        <button>Login</button>
+        <Field
+          autoComplete="current-password"
+          type="password"
+          name="password"
+          id={passwordId}
+        />
+        <button type="submit">Login</button>
       </Form>
     </Formik>
   );

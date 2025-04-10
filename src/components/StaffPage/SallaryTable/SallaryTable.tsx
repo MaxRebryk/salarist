@@ -5,7 +5,7 @@ type SallaryTableProps = {
   sallaryInfo: number;
 };
 
-const SallaryTable: React.FC<SallaryTableProps> = ({ sallaryInfo }) => {
+const SallaryTable: React.FC<SallaryTableProps> = ({ sallaryInfo, fine }) => {
   const [date, setDate] = useState(
     new Date().toLocaleDateString("uk-UA", {
       weekday: "long",
@@ -29,6 +29,7 @@ const SallaryTable: React.FC<SallaryTableProps> = ({ sallaryInfo }) => {
     <>
       <div className={css.sallaryDiv}>
         <h1>Дата: {date}</h1>
+        <h2>Штраф: {fine} грн</h2>
         <h2>Поточна Заробітна Плата:</h2>
         <h2>{sallaryInfo} грн</h2>
       </div>

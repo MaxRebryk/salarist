@@ -26,3 +26,9 @@
   color: aliceblue;
   cursor: pointer;
 }
+
+.buttonLogout {
+  border: none;
+  background: none;
+  color: aliceblue;
+}

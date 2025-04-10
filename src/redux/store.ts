@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "./auth/slice";
+import sallaryReducer from "./sallary/slice";
 import storage from "redux-persist/lib/storage";
 import {
   persistStore,
@@ -23,6 +24,7 @@ const authPersistedReducer = persistReducer(authPersistConfig, authReducer);
 export const store = configureStore({
   reducer: {
     auth: authPersistedReducer,
+    sallary: sallaryReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

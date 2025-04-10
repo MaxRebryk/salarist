@@ -2,8 +2,9 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { register, login, logout, refreshUser } from "./operations";
 
 export interface User {
-  name: string | null;
-  email: string | null;
+  userName: string | null;
+  userId: string | null;
+  userRole: string | null;
 }
 
 export interface AuthState {
@@ -17,8 +18,9 @@ export interface AuthState {
 
 const initialState: AuthState = {
   user: {
-    name: null,
-    email: null,
+    userName: null,
+    userId: null,
+    userRole: null,
   },
   token: null,
   isLoggedIn: false,
@@ -71,8 +73,9 @@ const slice = createSlice({
       .addCase(logout.fulfilled, (state) => {
         state.error = false;
         state.loading = false;
-        state.user.name = null;
-        state.user.email = null;
+        state.user.userName = null;
+        state.user.userId = null;
+        state.user.userRole = null;
         state.token = null;
         state.isLoggedIn = false;
       })
@@ -80,16 +83,29 @@ const slice = createSlice({
       .addCase(refreshUser.pending, (state) => {
         state.isRefreshing = true;
       })
-      .addCase(refreshUser.fulfilled, (state, action) => {
-        state.token = action.payload.accessToken;
-        state.isRefreshing = false;
-        state.isLoggedIn = true;
-      })
+      .addCase(
+        refreshUser.fulfilled,
+        (
+          state,
+          action: PayloadAction<{
+            accessToken: string;
+            user: {
+              userId: string;
+              userName: string;
+              userRole: string;
+            };
+          }>
+        ) => {
+          state.user = action.payload.user;
+          state.token = action.payload.accessToken;
+          state.isRefreshing = false;
+          state.isLoggedIn = true;
+        }
+      )
       .addCase(refreshUser.rejected, (state) => {
         state.isRefreshing = false;
         state.error = true;
         state.token = null;
-        state.user = { name: null, email: null };
         state.isLoggedIn = false;
       });
   },
