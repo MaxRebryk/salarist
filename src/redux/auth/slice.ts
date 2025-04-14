@@ -16,6 +16,11 @@ export interface AuthState {
   error: boolean | unknown;
 }
 
+export interface AuthPayload {
+  user: User;
+  accessToken: string;
+}
+
 const initialState: AuthState = {
   user: {
     userName: null,
@@ -48,7 +53,7 @@ const slice = createSlice({
       .addCase(register.pending, handlePending)
       .addCase(
         register.fulfilled,
-        (state, action: PayloadAction<{ user: User; accessToken: string }>) => {
+        (state, action: PayloadAction<AuthPayload>) => {
           state.error = false;
           state.loading = false;
           state.user = action.payload.user;
@@ -58,16 +63,13 @@ const slice = createSlice({
       )
       .addCase(register.rejected, handleRejected)
       .addCase(login.pending, handlePending)
-      .addCase(
-        login.fulfilled,
-        (state, action: PayloadAction<{ user: User; accessToken: string }>) => {
-          state.error = false;
-          state.loading = false;
-          state.user = action.payload.user;
-          state.token = action.payload.accessToken;
-          state.isLoggedIn = true;
-        }
-      )
+      .addCase(login.fulfilled, (state, action: PayloadAction<AuthPayload>) => {
+        state.error = false;
+        state.loading = false;
+        state.user = action.payload.user;
+        state.token = action.payload.accessToken;
+        state.isLoggedIn = true;
+      })
       .addCase(login.rejected, handleRejected)
       .addCase(logout.pending, handlePending)
       .addCase(logout.fulfilled, (state) => {
@@ -85,17 +87,7 @@ const slice = createSlice({
       })
       .addCase(
         refreshUser.fulfilled,
-        (
-          state,
-          action: PayloadAction<{
-            accessToken: string;
-            user: {
-              userId: string;
-              userName: string;
-              userRole: string;
-            };
-          }>
-        ) => {
+        (state, action: PayloadAction<AuthPayload>) => {
           state.user = action.payload.user;
           state.token = action.payload.accessToken;
           state.isRefreshing = false;

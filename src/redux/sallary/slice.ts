@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { addSallary, getAll, getOne } from "./operations";
+import { WorkersResponse } from "./operations";
 
 export interface Worker {
   _id: string;
@@ -10,6 +11,14 @@ export interface Worker {
   workDays: number;
   userType: string;
   parentId: string;
+}
+
+export interface WorkersData {
+  data: Worker[];
+  page: number;
+  perPage: number;
+  totalItems: number;
+  totalPages: number;
 }
 
 export interface SallaryState {
@@ -43,11 +52,14 @@ const slice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getAll.pending, handlePending)
-      .addCase(getAll.fulfilled, (state, action) => {
-        state.error = false;
-        state.loading = false;
-        state.workers = action.payload.data.data;
-      })
+      .addCase(
+        getAll.fulfilled,
+        (state, action: PayloadAction<WorkersResponse>) => {
+          state.error = false;
+          state.loading = false;
+          state.workers = action.payload.data.users;
+        }
+      )
       .addCase(getAll.rejected, handleRejected)
       .addCase(getOne.rejected, handleRejected)
       .addCase(getOne.pending, handlePending)

@@ -4,12 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/auth/operations";
 import { useNavigate } from "react-router-dom";
 import { User } from "../../redux/auth/slice";
+import { AppDispatch } from "../../redux/store";
 
 export default function AppBar() {
   const isLoggedIn: boolean = useSelector(selectIsLoggedIn);
   const user: User = useSelector(selectUser);
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const handleLogout = () => {
     dispatch(logout());

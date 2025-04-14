@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import MainButtons from "../../components/StaffPage/MainButtons/MainButtons";
 import SallaryTable from "../../components/StaffPage/SallaryTable/SallaryTable";
 import css from "../StaffPage/Staff.module.css";
 import { useDispatch, useSelector } from "react-redux";
-
-import { addSallary, getAll, getOne } from "../../redux/sallary/operations";
+import { AppDispatch } from "../../redux/store";
+import { addSallary, getOne } from "../../redux/sallary/operations";
 import { selectWorker } from "../../redux/sallary/selectors";
 
 const StaffPage: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     dispatch(getOne());

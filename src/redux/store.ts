@@ -12,6 +12,8 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
+import { AuthState } from "./auth/slice";
+import { SallaryState } from "./sallary/slice";
 
 const authPersistConfig = {
   key: "auth",
@@ -20,6 +22,11 @@ const authPersistConfig = {
 };
 
 const authPersistedReducer = persistReducer(authPersistConfig, authReducer);
+
+export interface RootState {
+  auth: AuthState;
+  sallary: SallaryState;
+}
 
 export const store = configureStore({
   reducer: {
@@ -34,6 +41,6 @@ export const store = configureStore({
     }),
 });
 
-export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
 
 export const persistor = persistStore(store);

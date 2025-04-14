@@ -3,6 +3,7 @@ import css from "./App.module.css";
 import { Route, Routes } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "../../redux/store";
 import { refreshUser } from "../../redux/auth/operations";
 import { selectIsRefreshing } from "../../redux/auth/selectors";
 import PrivateRoute from "../PrivateRoute";
@@ -20,7 +21,7 @@ const StaffPage = lazy(() => import("../../pages/StaffPage/StaffPage"));
 const AdminPage = lazy(() => import("../../pages/AdminPage/AdminPage"));
 
 const App: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const isRefreshing = useSelector(selectIsRefreshing);
 
   useEffect(() => {
@@ -30,12 +31,7 @@ const App: React.FC = () => {
   if (isRefreshing) {
     return (
       <div className={css.loader}>
-        <InfinitySpin
-          visible={true}
-          width="200"
-          color="#0000CD"
-          ariaLabel="infinity-spin-loading"
-        />
+        <InfinitySpin width="200" color="#0000CD" />
       </div>
     );
   } else {
