@@ -3,6 +3,7 @@ import css from "../SallaryTable/SallaryTable.module.css";
 
 type SallaryTableProps = {
   sallaryInfo: number;
+  fine: number;
 };
 
 const SallaryTable: React.FC<SallaryTableProps> = ({ sallaryInfo, fine }) => {

@@ -21,7 +21,7 @@ const StaffPage: React.FC = () => {
     console.log("click");
   };
   const halfClick = () => {
-    if (worker.userType === "bartender") {
+    if (worker && worker.userType === "bartender") {
       dispatch(addSallary(400));
     }
   };
@@ -29,7 +29,10 @@ const StaffPage: React.FC = () => {
     <div className={css.mainDiv}>
       <h1>{worker?.name}</h1>
       <h2>{worker?.userType}</h2>
-      <SallaryTable sallaryInfo={worker?.sallary} fine={worker?.fine} />
+      <SallaryTable
+        sallaryInfo={worker?.sallary || 0}
+        fine={worker?.fine || 0}
+      />
       <MainButtons fullClick={fullClick} halfClick={halfClick} />
     </div>
   );
