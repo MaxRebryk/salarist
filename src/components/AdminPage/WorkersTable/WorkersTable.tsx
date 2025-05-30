@@ -20,7 +20,6 @@ export default function WorkersTable({
       <ul className={css.list}>
         {Array.isArray(workers) &&
           workers.map((worker) => {
-            console.log("Rendering worker:", worker);
             return (
               <li className={css.listItem} key={worker._id}>
                 <div className={css.textDiv}>
