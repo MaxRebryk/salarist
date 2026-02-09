@@ -1,4 +1,3 @@
-import * as React from "react";
 import css from "./WorkersTable.module.css";
 import { Worker } from "../../../redux/sallary/slice";
 

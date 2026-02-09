@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
+  padding: 20px;
 }
 
 .listItem {
@@ -14,6 +15,7 @@
   gap: 20px;
   border: 1px antiquewhite solid;
   padding: 10px;
+  border-radius: 20px;
 }
 
 .listText {
@@ -33,6 +35,7 @@
   background: red;
   color: aliceblue;
   font-size: medium;
+  border-radius: 20px;
 }
 
 .changeInfoButton {
@@ -40,4 +43,5 @@
   background-color: blue;
   color: aliceblue;
   font-size: medium;
+  border-radius: 20px;
 }

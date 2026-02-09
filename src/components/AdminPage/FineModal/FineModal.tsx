@@ -10,9 +10,15 @@ export default function FineModal() {
   return (
     <div className={css.modal}>
       <Formik initialValues={initialValues}>
-        <Form>
-          <label htmlFor="fineInput">Введіть суму штрафа</label>
-          <Field type="input" name="fineInput"></Field>
+        <Form className={css.form}>
+          <div className={css.inputDiv}>
+            <label htmlFor="fineInput">Введіть суму штрафа</label>
+            <Field className={css.input} type="input" name="fineInput"></Field>
+          </div>
+          <div>
+            <button className={css.fineButton}>Додати штраф</button>
+            <button className={css.cancelButton}>Відмінити</button>
+          </div>
         </Form>
       </Formik>
     </div>
